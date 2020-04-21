@@ -11,7 +11,7 @@
              current ((vec a_seq) mid)]
        (cond
          (= term current) mid
-         (> term current) (search-for term a_seq (inc mid) upper-bound)
-         (< term current) (search-for term a_seq lower-bound (dec mid))))
+         (> term current) (recur term a_seq (inc mid) upper-bound)
+         (< term current) (recur term a_seq lower-bound (dec mid))))
        (throw (Throwable. "not found")))))
 
