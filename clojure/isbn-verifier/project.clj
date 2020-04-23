@@ -2,4 +2,5 @@
   :description "isbn-verifier xercise."
   :url "https://github.com/exercism/clojure/tree/master/exercises/isbn-verifier"
   :dependencies [[org.clojure/clojure "1.10.0"]
-                 [org.clojure/tools.trace "0.7.10"]])
+                 [org.clojure/tools.trace "0.7.10"]]
+  :plugins [[lein-cljfmt "0.6.7"]])

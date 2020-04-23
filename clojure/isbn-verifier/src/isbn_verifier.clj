@@ -1,15 +1,15 @@
 (ns isbn-verifier)
 
-(defn- char-digit [char]
-  "ISBNs can contain the character X, this will transform it to 10."
-  (if (= \X char) 10 (Character/digit char 10)))
+(defn- numbers [isbn]
+  (keep #(cond (= \X %) 10
+               (Character/isDigit %) (Character/digit % 10)) isbn))
 
-(defn isbn? [raw-isbn]
-  (let [isbn (clojure.string/replace raw-isbn #"-|[A-W]|Y|Z" "")]
-    (boolean (and (re-matches #"\d{9}X?|\d{10}" isbn)
-      (->> isbn
-        (map-indexed #(* (char-digit %2) (- 10 %1)))
-        (reduce + )
-        (#(mod % 11))
-        zero?)))))
+(defn isbn? [isbn]
+  (boolean (if (re-matches #"(?:\d-?){9}[\dX]" isbn)
+             (->> isbn
+                  (numbers)
+                  (map-indexed #(* %2 (- 10 %1)))
+                  (reduce +)
+                  (#(mod % 11))
+                  zero?))))
 
