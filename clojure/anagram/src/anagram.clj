@@ -2,17 +2,12 @@
   (:require [clojure.string :as str]))
 
 (defn- anagram? [word]
-  (let [sorted-word (sort word)]
-    #(= sorted-word (sort (str/lower-case %)))))
-
-(defn- prune-prospects [word prospects]
-  (remove
-    #(= (str/lower-case %) word)
-    prospects))
+  (let [lowered-word (str/lower-case word)
+        sorted-word (sort lowered-word)]
+    #(let [lowered-prospect (str/lower-case %)] 
+       (and (not= lowered-word lowered-prospect)
+            (= sorted-word (sort lowered-prospect))))))
 
 (defn anagrams-for [word prospects]
-  (let [lowered-word (str/lower-case word)]
-    (filter
-      (anagram? lowered-word)
-      (prune-prospects lowered-word prospects))))
+  (filter (anagram? word) prospects))
 
