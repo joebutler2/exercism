@@ -119,7 +119,6 @@
       (str
         (valid-number (int (/ num magnitude))) " " suffix
         (if (pos? remaining) (str " " (valid-number remaining)))))))
-(defn foo-test [x] (* x 10))
 
 (defn number [num]
   (cond (and (pos? num) (< num 999999999999))
