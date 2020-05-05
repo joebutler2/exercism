@@ -41,7 +41,5 @@
   (reset! (:name robot) (possible-names)))
 
 (defn robot []
-  (let [new-bot (->Robot (atom ""))]
-    (reset-name new-bot)
-    new-bot))
+  (->Robot (atom (possible-names))))
 
