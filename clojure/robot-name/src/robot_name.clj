@@ -18,17 +18,14 @@
     (map #(map (fn [num] (str % num)) num-combos))
     (flatten)))
 
-(defn random-name []
-  (nth combos (int (rand (count combos)))))
-
 (def used-names
   (atom #{}))
 
 (defn possible-names
-  ([] (possible-names (random-name)))
+  ([] (possible-names (rand-nth combos)))
   ([new-name] 
       (if (contains? @used-names new-name)
-        (possible-names (random-name))
+        (possible-names (rand-nth combos))
         (do
           (swap! used-names #(conj % new-name))
           new-name))))
