@@ -1,8 +1,11 @@
 (ns isbn-verifier)
 
 (defn- numbers [isbn]
-  (keep #(cond (= \X %) 10
-               (Character/isDigit %) (Character/digit % 10)) isbn))
+  (keep #(if (re-matches #"\d" (str %))
+           (Character/digit % 10)
+           (if (= \X %)
+             10))
+        isbn))
 
 (defn isbn? [isbn]
   (boolean (if (re-matches #"(?:\d-?){9}[\dX]" isbn)

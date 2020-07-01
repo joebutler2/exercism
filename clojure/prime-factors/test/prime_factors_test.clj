@@ -32,5 +32,5 @@
 (deftest a-large-number
   (is (= [5, 17, 23, 461] (prime-factors/of 901255))))
 
-; (deftest a-huge-number
-;   (is (= [11, 9539, 894119] (prime-factors/of 93819012551))))
+(deftest a-huge-number
+  (is (= [11, 9539, 894119] (prime-factors/of 93819012551))))

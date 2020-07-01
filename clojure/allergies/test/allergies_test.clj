@@ -40,6 +40,6 @@
 (deftest allergic-to-eggs-in-addition-to-other-stuff
   (is (allergies/allergic-to? 5 :eggs)))
 
-(deftest ^:test-refresh/focus ignore-non-allergen-score-parts
+(deftest ignore-non-allergen-score-parts
   (is (= [:eggs :shellfish :strawberries :tomatoes :chocolate :pollen :cats]
          (allergies/allergies 509))))

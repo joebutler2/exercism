@@ -1,7 +1,6 @@
 (ns spiral-matrix-test
   (:require [clojure.test :refer [deftest is testing]]
-            [spiral-matrix :refer [spiral]]
-            ))
+            [spiral-matrix :refer [spiral]]))
 
 (deftest spiral-matrix-of-0
   (testing "spiral matrix of 0"
@@ -19,16 +18,14 @@
            '((1 2)
              (4 3))))))
 
-(deftest  spiral-matrix-of-3
+(deftest spiral-matrix-of-3
   (testing "spiral matrix of 3"
     (is (= (spiral 3)
            '((1 2 3)
              (8 9 4)
              (7 6 5))))))
 
-(deftest
-  ; ^:test-refresh/focus
-  spiral-matrix-of-4
+(deftest spiral-matrix-of-4
   (testing "spiral matrix of 4"
     (is (= (spiral 4)
            '((1  2  3  4)
@@ -36,12 +33,9 @@
              (11 16 15 6)
              (10 9  8  7))))))
 
-(defn pp [nested-list] (map prn nested-list))
-
 (deftest spiral-matrix-of-20
   (testing "spiral matrix of 20"
-    (pp (spiral 20))
-    (let [expected
+    (is (= (spiral 20)
            '((1  2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17  18  19  20)
              (76 77  78  79  80  81  82  83  84  85  86  87  88  89  90  91  92  93  94  21)
              (75 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 95  22)
@@ -61,8 +55,4 @@
              (61 130 191 244 243 242 241 240 239 238 237 236 235 234 233 232 231 174 109 36)
              (60 129 190 189 188 187 186 185 184 183 182 181 180 179 178 177 176 175 110 37)
              (59 128 127 126 125 124 123 122 121 120 119 118 117 116 115 114 113 112 111 38)
-             (58 57  56  55  54  53  52  51  50  49  48  47  46  45  44  43  42  41  40  39))
-          ]
-    (is (= (spiral 20)
-           expected))))
-)
+             (58 57  56  55  54  53  52  51  50  49  48  47  46  45  44  43  42  41  40  39))))))

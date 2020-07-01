@@ -7,8 +7,10 @@
   ; inc the halfpoint since `range` is exclusive
   (filter #(factor-of? n %) (range 1 (inc (/ n 2)))))
 
+(defn sum [coll] (reduce + 0 coll))
+
 (defn factors-sum [n]
-  (reduce + (factors n)))
+  (sum (factors n)))
 
 (defn classify [n]
   (if (pos? n)

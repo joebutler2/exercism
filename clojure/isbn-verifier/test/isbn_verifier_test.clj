@@ -1,9 +1,6 @@
 (ns isbn-verifier-test
   (:require [clojure.test :refer [deftest is]]
-            [isbn-verifier :refer [isbn?]]
-            [clojure.tools.trace :refer [trace-vars]]))
-
-(trace-vars isbn?)
+            [isbn-verifier :refer [isbn?]]))
 
 (deftest valid-isbn-number
   (is (= true (isbn? "3-598-21508-8"))))

@@ -47,8 +47,8 @@
 (deftest decode-lowercase
   (testing "decode string with lowercase characters"
     (is (= (rle/run-length-decode "2a3b4c") "aabbbcccc"))))
-; 
-(deftest  decode-mixed-whitespace
+
+(deftest decode-mixed-whitespace
   (testing "decode string with mixed whitespace characters in it"
     (is (= (rle/run-length-decode "2 hs2q q2w2 ") "  hsqq qww  "))))
 

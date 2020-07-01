@@ -49,5 +49,5 @@
     (or
       (and (not-empty list1) (empty? list2))
       (is-superlist? list1 list2)):superlist
-    (not= list1 list2) :unequal))
-
+    (not= list1 list2) :unequal
+))
