@@ -2,7 +2,7 @@
   (:require [clojure.test :refer [deftest testing is]]
             nth-prime))
 
-(deftest first-prime
+(deftest ^:test-focus/refresh first-prime
   (testing "the first prime is 2"
     (is (= 2 (nth-prime/nth-prime 1)))))
 
