@@ -1,0 +1,45 @@
+(ns robot-name)
+(defrecord Robot [name])
+
+(defn robot-name [robot]
+  (:name robot))
+
+(def upper-case-chars
+ (seq "ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
+
+(def char-combos
+  (->>
+    upper-case-chars
+    (map #(map (fn [other-char] (str % other-char)) upper-case-chars))
+    (flatten)))
+
+(def num-combos
+  (map #(format "%03d" %) (range 1000)))
+
+(def combos
+  (->>
+    char-combos
+    (map #(map (fn [num] (str % num)) num-combos))
+    (flatten)))
+
+(defn random-name []
+  (nth combos (int (rand (count combos)))))
+
+(def used-names
+  (atom #{}))
+
+(defn possible-names
+  ([] (possible-names (random-name)))
+  ([new-name] 
+      (if (contains? @used-names new-name)
+        (possible-names (random-name))
+        (do
+          (swap! used-names #(conj % new-name))
+          new-name))))
+
+(defn reset-name [robot]
+  (update robot :name (fn [_] (possible-names))))
+
+(defn robot []
+  (reset-name (->Robot "")))
+
